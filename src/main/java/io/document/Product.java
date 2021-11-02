@@ -1,24 +1,31 @@
-package io.entity;
+package io.document;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collection = "Product")
 public class Product {
 
-    String name;
-    String description;
-    String brand;
-    String[] tags;
+    public String brand;
+    public String description;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    public String id;
+    public String name;
+    public String[] tags;
 
-    public Long getId() {
+    public Product(String id, String name, String brand, String description, String[] tags) {
+        this.brand = brand;
+        this.description = description;
+        this.id = id;
+        this.name = name;
+        this.tags = tags;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
